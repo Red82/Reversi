@@ -2,6 +2,8 @@
 
 from api import ReversiAPI
 from pprint import pprint
+import operator
+
    
 def main():
     confirm = 1
