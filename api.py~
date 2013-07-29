@@ -59,6 +59,7 @@ class ReversiAPI:
         if self.register(mail) == err:
             return True
         else:
+            print self.register(mail)
             print 'Please, register!'
             return False
 

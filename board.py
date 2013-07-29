@@ -11,23 +11,20 @@ class Board:
     def moves(self, state, player, enemy):
         weights = {}
 
-        for y in xrange(len(state)-1):
-            for x in xrange(len(state[0]) - 1):
+        for y in xrange(len(state)):
+            for x in xrange(len(state[0])):
                 
                 weights[(x, y)] = self.calc_move(x, y, state, player, enemy)
-                pprint({(x, y) : weights[(x, y)]})
+                #pprint({(x, y) : weights[(x, y)]})
                 
         sorted_dict = sorted(weights.iteritems(), key=operator.itemgetter(1))
-
-        if sorted_dict[-1][1] == 0:
-            return 
         
         return sorted_dict[-1][0]         
 
-    #Сheck matrix cells
+    #Calculation of the weighting factor for each direction
     def calc_move(self, x, y, state, player, enemy):
         if state[y][x] != 0:
-            return 0
+            return False
 
 
         weight = 0
@@ -39,7 +36,7 @@ class Board:
             
         return weight
 
-       # TODO: should generate the list of all cells values from the current point to the board side (like a slice)
+    #The number of chips the enemy
     def slice_direction(self, direction, state, x, y, player, enemy):
         line = []
 
@@ -57,4 +54,4 @@ class Board:
                 (0 <= y < len(state)) and
                 (state[y][x] == player)):    
             return len(line)
-        return 0
+        return False
